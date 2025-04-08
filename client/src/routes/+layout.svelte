@@ -17,22 +17,22 @@
 </main>
 
 
-<footer class="footer-container">
+<!-- <footer class="footer-container">
 	<div class="footer-content">
 	<span>Powered by: </span>
 	{#each images as image}
 			<img src={image} alt="Logo" />
 		{/each}
 	</div>
-</footer>
+</footer> -->
 
-<style>
+<!-- <style>
 	.footer-container {
 		position: fixed; /* Keeps footer fixed at the bottom */
 		bottom: 0; /* Position at the bottom */
 		width: 100%; /* Makes it span the entire width of the page */
 		margin: 0; /* Ensures no extra margin around the footer */
-		padding: 1rem 0; /* Add vertical padding while keeping horizontal alignment */
+		padding: 1rem 0;
 		display: flex; /* Align content horizontally */
 		align-items: center; /* Center vertically */
 		justify-content: flex-end; /* Center horizontally */
@@ -54,4 +54,4 @@
 		width: 50px; /* Adjust image size */
 		height: auto;
 	}
-	</style>
+	</style> -->
