@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+    postgres:
+        image: postgres:latest
+        container_name: postgres
+        environment:
+            POSTGRES_USER: yourusername
+            POSTGRES_PASSWORD: yourpassword
+            POSTGRES_DB: yourdatabase
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+    server:
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        container_name: server
+        ports:
+            - "5000:5000"
+        depends_on:
+            - postgres
+        environment:
+            DATABASE_URL: postgres://yourusername:yourpassword@postgres:5432/yourdatabase
+        volumes:
+            - ./server:/app
+
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        container_name: client
+        ports:
+            - "3000:3000"
+        depends_on:
+            - server
+        volumes:
+            - ./client:/app
+            - /app/.svelte-kit/output
+
+volumes:
+    postgres_data:
