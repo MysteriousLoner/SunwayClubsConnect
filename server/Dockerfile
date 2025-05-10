@@ -18,6 +18,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Expose the port Django will run on
-EXPOSE 8000
+EXPOSE 8080
 RUN apt-get install -y netcat-openbsd
-CMD ["sh", "-c", "until nc -z postgres 5432; do sleep 1; done && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "until nc -z postgres 5432; do sleep 1; done && python manage.py migrate && python manage.py runserver 0.0.0.0:8080"]
