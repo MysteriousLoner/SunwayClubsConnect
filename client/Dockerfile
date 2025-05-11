@@ -1,24 +1,28 @@
-# Use official Node.js image (you can switch to Alpine for a smaller size)
-FROM node:18
+FROM node:18-alpine AS build
 
-# Set working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json first to leverage Docker caching
 COPY package.json package-lock.json ./
 
-# Install dependencies
 RUN npm install
 
-# Copy the rest of the application files
-COPY . .
+COPY . ./
 
-# Build the SvelteKit application
 RUN npm run build
 
-# Expose the default port for SvelteKit
 EXPOSE 3000
 
-# Start the application
+# used to run app without npm, used to debug stuff trough exec
+# RUN npm run dev -- --port 3000 --host
+
+# RUN rm -rf node_modules
+# RUN rm 
+# CMD ["tail", "-f", "/dev/null"]
+
+# run with npm
 # CMD ["npm", "run", "preview", "--", "--port", "3000", "--host"]
 CMD ["npm", "run", "dev", "--", "--port", "3000", "--host"]
+
+# run using nginx, less resource heavy
+# FROM nginx:1.19-alpine
+# COPY --from=build /app/public /usr/share/nginx/htmls
