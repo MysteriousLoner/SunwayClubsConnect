@@ -6,16 +6,17 @@
 	"scripts": {
 		"start": "vite preview",
 		"dev": "vite dev",
+		"dev:docker": "vite dev --port 3000 --host",
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"lint": "prettier --check . && eslint .",
+		"preinstall": "npx only-allow pnpm"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
-		"@sveltejs/adapter-auto": "^6.0.0",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/forms": "^0.5.9",
@@ -30,5 +31,9 @@
 		"svelte": "^5.0.0",
 		"tailwindcss": "^4.1.6",
 		"vite": "^6.2.5"
+	},
+	"packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39",
+	"dependencies": {
+		"@sveltejs/adapter-auto": "^6.0.0"
 	}
 }

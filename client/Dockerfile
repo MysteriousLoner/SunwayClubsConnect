@@ -1,28 +1,17 @@
-FROM node:18-alpine AS build
-
+FROM node:20-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
-RUN npm install
-
-COPY . ./
-
-RUN npm run build
-
+FROM base
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 EXPOSE 3000
-
-# used to run app without npm, used to debug stuff trough exec
-# RUN npm run dev -- --port 3000 --host
-
-# RUN rm -rf node_modules
-# RUN rm 
+RUN rm -rf /app/node_modules
+RUN pnpm install
 # CMD ["tail", "-f", "/dev/null"]
-
-# run with npm
-# CMD ["npm", "run", "preview", "--", "--port", "3000", "--host"]
-CMD ["npm", "run", "dev", "--", "--port", "3000", "--host"]
-
-# run using nginx, less resource heavy
-# FROM nginx:1.19-alpine
-# COPY --from=build /app/public /usr/share/nginx/htmls
+CMD [ "pnpm", "run", "dev:docker" ]
