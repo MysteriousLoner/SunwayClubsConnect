@@ -2,11 +2,12 @@
   import { CloseButton, Sidebar, SidebarGroup, SidebarItem, SidebarButton, uiHelpers } from "flowbite-svelte";
   import { ChartOutline, GridSolid, MailBoxSolid, UndoOutline, UsersGroupSolid, UserSolid } from "flowbite-svelte-icons";
   import { page } from "$app/state";
+  import { onMount } from "svelte";
   let { children } = $props();
   let activeUrl = $state(page.url.pathname);
   const spanClass = "flex-1 ms-3 whitespace-nowrap";
   const demoSidebarUi = uiHelpers();
-  let isDemoOpen = $state(false);
+  let isDemoOpen = $state(true);
   const closeDemoSidebar = demoSidebarUi.close;
   $effect(() => {
     isDemoOpen = demoSidebarUi.isOpen;
