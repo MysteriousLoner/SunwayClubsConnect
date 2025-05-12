@@ -53,18 +53,18 @@
         </section>
 
         <!-- CLUB CONNECT Section -->
-        <section class="mt-8">
+        <section class="w-full mt-8">
             <h2 class="text-xl font-bold text-left mb-4">CLUB CONNECT</h2>
-            <div class="flex justify-start gap-4">
-                <button class="w-48 h-36 flex items-center justify-center text-lg bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700"
+            <div class="flex overflow-x-auto gap-4 py-4">
+                <button class="w-48 h-36 flex-shrink-0 flex items-center justify-center text-lg bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700"
                     on:click={() => redirectTo('/clubsAndSocieties')}>
                     LIST OF C&S
                 </button>
-                <button class="w-48 h-36 flex items-center justify-center text-lg bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700"
+                <button class="w-48 h-36 flex-shrink-0 flex items-center justify-center text-lg bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700"
                     on:click={() => redirectTo('https://student.sunway.edu.my/')}>
                     STUDENT LIFE WEBSITE
                 </button>
-                <button class="w-48 h-36 flex items-center justify-center text-lg bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700"
+                <button class="w-48 h-36 flex-shrink-0 flex items-center justify-center text-lg bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700"
                     on:click={() => redirectTo('/kyec')}>
                     KNOW YOUR EXTRACURRICULAR (KYEC)
                 </button>
