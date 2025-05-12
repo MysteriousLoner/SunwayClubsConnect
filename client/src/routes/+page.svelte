@@ -24,7 +24,7 @@
 <div class="h-full min-h-screen bg-gradient-to-l from-blue-400 to-teal-500 p-4 text-white">
     <div class="flex flex-col p-4">
         <!-- Header containing button to switch to admin mode -->
-        <div class="flex justify-left w-full mb-8 md:hidden">
+        <div class="flex justify-left w-full mb-8 sm:hidden">
             <button 
                 class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors"
                 on:click={() => redirectTo('/login')}>
