@@ -26,7 +26,7 @@
     
     <!-- Sidebar for larger screens -->
     <div class="w-full mt-14 md:mt-0">
-    <Sidebar {activeUrl} backdrop={true} isOpen={isDemoOpen} closeSidebar={closeDemoSidebar} params={{ x: -50, duration: 50 }} class="z-40 h-screen pt-6 fixed left-0 top-0 w-64" position="fixed" activeClass="p-2" nonActiveClass="p-2">
+    <Sidebar {activeUrl} backdrop={true} isOpen={isDemoOpen} closeSidebar={closeDemoSidebar} params={{ x: -50, duration: 50 }} class="z-40 h-screen pt-6 fixed left-0 top-0 w-64" position="fixed" activeClass="p-2" nonActiveClass="p-2 hidden sm:block">
         <CloseButton onclick={closeDemoSidebar} color="gray" class="absolute top-2 right-2 p-2 md:hidden" />
         <SidebarGroup>
         <SidebarItem label="Dashboard" href="/clubAdminPanel">
