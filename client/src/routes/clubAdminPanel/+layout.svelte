@@ -7,7 +7,7 @@
   let activeUrl = $state(page.url.pathname);
   const spanClass = "flex-1 ms-3 whitespace-nowrap";
   const demoSidebarUi = uiHelpers();
-  let isDemoOpen = $state(true);
+  let isDemoOpen = $state(false);
   const closeDemoSidebar = demoSidebarUi.close;
   $effect(() => {
     isDemoOpen = demoSidebarUi.isOpen;
