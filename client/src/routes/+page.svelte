@@ -1,4 +1,6 @@
 <script>
+    import { Card } from "flowbite-svelte";
+    import { GiftBoxSolid, ArrowUpRightFromSquareOutline } from "flowbite-svelte-icons";
 	// Array for "UPCOMING EVENTS" section containing image addresses
 	let eventImages = [
 		'/placeholderEventImage.jpg',
@@ -33,9 +35,19 @@
             <h2 class="text-xl font-bold text-left mb-4">UPCOMING EVENTS</h2>
             <div class="flex overflow-x-auto gap-4 py-4">
                 {#each eventImages as image}
-                    <div class="w-48 h-36 rounded-lg shadow-md overflow-hidden flex-shrink-0">
-                        <img src={image} alt="Event" class="w-full h-full object-cover" />
-                    </div>
+                    <Card class="p-4 sm:p-6 md:p-8 w-72 sm:w-80 md:w-96 flex-shrink-0">
+                        <div class="h-48 overflow-hidden rounded">
+                            <img src={image} alt="Event" class="w-full object-cover" />
+                        </div>
+                        <a href="/">
+                            <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Placeholder Event</h5>
+                        </a>
+                        <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">An intresting event happening in campus! Located at xxx at xxx pm.</p>
+                        <a href="/" class="text-primary-600 inline-flex items-center hover:underline">
+                            link to event
+                            <ArrowUpRightFromSquareOutline class="ms-2.5 h-4 w-4" />
+                        </a>
+                    </Card>
                 {/each}
             </div>
         </section>
