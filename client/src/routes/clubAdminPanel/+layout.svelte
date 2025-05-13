@@ -9,6 +9,40 @@
   const demoSidebarUi = uiHelpers();
   let isDemoOpen = $state(false);
   const closeDemoSidebar = demoSidebarUi.close;
+  
+  // Custom handler that only closes sidebar on mobile screens
+  function handleCloseSidebar() {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      closeDemoSidebar();
+    }
+    // On desktop screens, don't close the sidebar
+  }
+  
+  // Force sidebar to open on desktop screens on initial load
+  onMount(() => {
+    if (typeof window !== 'undefined') {
+      const checkScreenSize = () => {
+        if (window.innerWidth >= 768) {
+          // Only open if it's closed
+          if (!isDemoOpen) {
+            demoSidebarUi.open();
+          }
+        }
+      };
+      
+      // Check on initial load
+      checkScreenSize();
+      
+      // Add resize event listener to keep sidebar state in sync with screen size
+      window.addEventListener('resize', checkScreenSize);
+      
+      // Clean up event listener
+      return () => {
+        window.removeEventListener('resize', checkScreenSize);
+      };
+    }
+  });
+  
   $effect(() => {
     isDemoOpen = demoSidebarUi.isOpen;
     activeUrl = page.url.pathname;
@@ -17,7 +51,7 @@
 
 <div class="h-full min-h-screen bg-gradient-to-l from-blue-400 to-teal-500 flex flex-col">
     <!-- Mobile header -->
-    <div class="fixed top-0 left-0 w-full bg-gray-100 dark:bg-gray-800 shadow-md z-40 md:hidden">
+    <div class="fixed top-0 left-0 w-full bg-gray-100 dark:bg-gray-800 shadow-md z-40 sm:hidden">
       <div class="flex items-center px-4 py-3">
         <SidebarButton onclick={demoSidebarUi.toggle} class="text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-md" />
         <h1 class="text-xl font-semibold text-gray-800 dark:text-white ml-4">Admin Panel</h1>
@@ -26,7 +60,7 @@
     
     <!-- Sidebar for larger screens -->
     <div class="w-full mt-14 md:mt-0">
-    <Sidebar {activeUrl} backdrop={true} isOpen={isDemoOpen} closeSidebar={closeDemoSidebar} params={{ x: -50, duration: 50 }} class="z-40 h-screen pt-6 fixed left-0 top-0 w-64" position="fixed" activeClass="p-2" nonActiveClass="p-2">
+    <Sidebar {activeUrl} backdrop={true} isOpen={isDemoOpen} closeSidebar={handleCloseSidebar} params={{ x: -50, duration: 50 }} class="z-40 h-screen pt-6 fixed left-0 top-0 w-64 md:translate-x-0" position="fixed" activeClass="p-2" nonActiveClass="p-2">
         <CloseButton onclick={closeDemoSidebar} color="gray" class="absolute top-2 right-2 p-2 md:hidden" />
         <SidebarGroup>
         <SidebarItem label="Dashboard" href="/clubAdminPanel">
