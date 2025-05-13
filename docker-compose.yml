@@ -36,10 +36,9 @@ services:
             - "3000:3000"
         # depends_on:
         #     - server
-        volumes:
-            - ./client:/app
-            - /app/node_modules
-            - /app/.svelte-kit/output
+        # volumes:
+        #     - ./client:/app
+        #     - /app/.svelte-kit/output
 
 volumes:
     postgres_data:
