@@ -49,7 +49,7 @@
   });
 </script>
 
-<div class="h-full min-h-screen bg-gradient-to-l from-blue-400 to-teal-500 flex flex-col">
+<div class="h-full bg-gradient-to-l from-blue-400 to-teal-500 flex flex-col">
     <!-- Mobile header -->
     <div class="fixed top-0 left-0 w-full bg-gray-100 dark:bg-gray-800 shadow-md z-40 sm:hidden">
       <div class="flex items-center px-4 py-3">
