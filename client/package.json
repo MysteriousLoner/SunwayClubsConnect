@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"start": "vite preview",
+		"start": "node build/index.js",
 		"dev": "vite dev",
 		"dev:docker": "vite dev --port 3000 --host",
 		"build": "vite build",

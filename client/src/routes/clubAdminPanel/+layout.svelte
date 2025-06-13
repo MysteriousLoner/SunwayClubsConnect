@@ -23,15 +23,22 @@
     if (typeof window !== 'undefined') {
       const checkScreenSize = () => {
         if (window.innerWidth >= 768) {
-          // Only open if it's closed
-          if (!isDemoOpen) {
-            demoSidebarUi.open();
-          }
+          // Force the sidebar to be open on desktop - more aggressive approach
+          demoSidebarUi.open();
+          // Set a small timeout to ensure the state is properly applied
+          setTimeout(() => {
+            if (!isDemoOpen) {
+              demoSidebarUi.open();
+            }
+          }, 100);
         }
       };
       
-      // Check on initial load
+      // Check on initial load - run it immediately 
       checkScreenSize();
+      
+      // Also check after a small delay to catch any race conditions
+      setTimeout(checkScreenSize, 200);
       
       // Add resize event listener to keep sidebar state in sync with screen size
       window.addEventListener('resize', checkScreenSize);
@@ -60,7 +67,7 @@
     
     <!-- Sidebar for larger screens -->
     <div class="w-full mt-14 md:mt-0">
-    <Sidebar {activeUrl} backdrop={true} isOpen={isDemoOpen} closeSidebar={handleCloseSidebar} params={{ x: -50, duration: 50 }} class="z-40 h-screen pt-6 fixed left-0 top-0 w-64 md:translate-x-0" position="fixed" activeClass="p-2" nonActiveClass="p-2">
+    <Sidebar {activeUrl} backdrop={true} isOpen={isDemoOpen} closeSidebar={handleCloseSidebar} params={{ x: -50, duration: 50 }} class="z-40 h-screen pt-6 fixed left-0 top-0 w-64 md:translate-x-0 md:!transform-none transition-transform" position="fixed" activeClass="p-2" nonActiveClass="p-2">
         <CloseButton onclick={closeDemoSidebar} color="gray" class="absolute top-2 right-2 p-2 md:hidden" />
         <SidebarGroup>
         <SidebarItem label="Dashboard" href="/clubAdminPanel">
